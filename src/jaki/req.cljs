@@ -1,6 +1,7 @@
 (ns jaki.req
   (:use [jaki.util :only [clj->js]])
   (:require [goog.net.XhrIo :as xhr]
+            [goog.net.Jsonp :as jsonp]
             [goog.json :as json])
   (:refer-clojure :exclude [get]))
 
@@ -10,7 +11,8 @@
   ([url]
      (request url nil "GET" nil nil))
   ([url callback]
-     (request url callback "GET" nil nil))
+     (let [cor (goog.net.Jsonp. url)]
+       (.send cor nil callback)))
   ([url callback method]
      (request url callback method nil nil))
   ([url callback method payload]

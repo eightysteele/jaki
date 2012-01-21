@@ -13,8 +13,7 @@
 (def *default-db* (atom nil))
 
 (defn set-url-prefix [prefix]
-  (reset! *url-prefix* (if (or (= "" prefix) (= "/" (.substr prefix 0 1))) prefix
-                           (str "/" prefix))))
+  (reset! *url-prefix* prefix))
 
 (defn set-default-db [db]
   (reset! *default-db* db))
